@@ -10,7 +10,7 @@ export default defineConfig({
     trace: "on-first-retry", 
     screenshot: "only-on-failure",
     video: "retain-on-failure",
-    testIdAttribute: "data-qa", 
+    testIdAttribute: "data-testid", 
     actionTimeout: 10 * 1000,
     navigationTimeout: 20 * 1000,
   },
