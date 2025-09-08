@@ -16,11 +16,18 @@ export class DART_TermsOfUse extends BaseClass{
         this.checkbox2 = page.getByTestId('CheckBoxOutlineBlankIcon').nth(1);
     }
 
+    async clickCheckbox1() {
+        await this.checkbox1.click();
+    }
+    async clickCheckbox2() {
+        await this.checkbox2.click();
+    }
+
     async termsOfUse(){
         await this.termsOfUseHeader.waitFor({state:'visible'});
         await this.content.waitFor({state:'visible'});
-        await this.checkbox1.click();
-        await this.checkbox2.click();   
+        await this.clickCheckbox1();
+        await this.clickCheckbox2();
         await this.clickContinueButton();
     }
 
