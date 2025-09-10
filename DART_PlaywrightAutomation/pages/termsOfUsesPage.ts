@@ -1,6 +1,6 @@
 import {test,Locator, Page} from "@playwright/test";
 import BaseClass from "./baseClass";
-
+import { termsOfUseLocators } from "../locators/termsOfuseLocators";
 export class DART_TermsOfUse extends BaseClass{
    
     private readonly termsOfUseHeader : Locator;
@@ -10,10 +10,10 @@ export class DART_TermsOfUse extends BaseClass{
 
     constructor(page:Page) {
         super(page);
-        this.termsOfUseHeader = page.getByText('Terms of Use - US');
-        this.content = page.locator('.content');
-        this.checkbox1 = page.getByTestId('CheckBoxOutlineBlankIcon').nth(0);
-        this.checkbox2 = page.getByTestId('CheckBoxOutlineBlankIcon').nth(1);
+        this.termsOfUseHeader = page.getByText(termsOfUseLocators.termsOfUseHeader);
+        this.content = page.locator(termsOfUseLocators.content);
+        this.checkbox1 = page.getByTestId(termsOfUseLocators.checkbox1.testId).nth(termsOfUseLocators.checkbox1.nth);
+        this.checkbox2 = page.getByTestId(termsOfUseLocators.checkbox2.testId).nth(termsOfUseLocators.checkbox2.nth);
     }
 
     async clickCheckbox1() {
