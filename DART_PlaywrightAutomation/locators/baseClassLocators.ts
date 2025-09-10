@@ -1,6 +1,6 @@
 export const baseClassLocators = {
-    cancelButton: { role: 'button', name: 'Cancel' },
-    continueButton: { role: 'button', name: 'Continue' },
-    backButton: { role: 'button', name: 'Back' },
-    submitButton: { role: 'button', name: 'Submit' },
+    cancelButton: 'button:has-text("Cancel")',
+    continueButton: 'button:has-text("Continue")',
+    backButton: 'button:has-text("Back")',
+    submitButton: 'button:has-text("Submit")',
 };

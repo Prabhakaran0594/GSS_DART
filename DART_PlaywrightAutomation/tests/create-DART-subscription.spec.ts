@@ -1,5 +1,5 @@
 import {test,Page,expect} from '@playwright/test'
-import { DARTHomePage } from '../Pages/DARTHomePage'
+import { DARTHomePage } from '../pages/DARTHomePage';
 
 test('create-DART-subscription',async({page}) =>{
 

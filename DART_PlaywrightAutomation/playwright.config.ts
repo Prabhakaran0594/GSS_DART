@@ -13,11 +13,14 @@ export default defineConfig({
     testIdAttribute: "data-testid", 
     actionTimeout: 10 * 1000,
     navigationTimeout: 20 * 1000,
+    viewport: { width: 1280, height: 720 },
   },
   projects: [
     {
       name: "chromium",
       use: { ...devices["Desktop Chrome"] },
+      
+
     },
     // {
     //   name: "firefox",

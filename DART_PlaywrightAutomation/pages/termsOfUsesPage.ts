@@ -1,6 +1,7 @@
 import {test,Locator, Page} from "@playwright/test";
 import BaseClass from "./baseClass";
 import { termsOfUseLocators } from "../locators/termsOfuseLocators";
+
 export class DART_TermsOfUse extends BaseClass{
    
     private readonly termsOfUseHeader : Locator;
