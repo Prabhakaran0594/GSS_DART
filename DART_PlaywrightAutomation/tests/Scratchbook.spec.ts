@@ -5,7 +5,10 @@ test('Scratchbook',async({page})=>{
 
     await page.goto('https://sglobalsubscriptionservices.aaps.deloitte.com/subscribe/dart');
 
-    await page.locator('#onetrust-close-btn-container').click();
+   
+
+    await page.getByLabel('Cookie banner').getByLabel('Close').click();
+  await page.getByRole('button', { name: 'OK' }).click();
 
 
 })
