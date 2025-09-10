@@ -6,12 +6,13 @@ export default class BaseClass{
     private readonly cancelButton: Locator;
     private readonly continueButton: Locator;
     private readonly backButton: Locator;
-
+    private readonly submitButton: Locator;
     constructor(page:Page){
         this.page = page;
         this.cancelButton = page.getByRole('button', { name: 'Cancel' });
         this.continueButton = page.getByRole('button', { name: 'Continue' });
         this.backButton = page.getByRole('button', { name: 'Back' });
+        this.submitButton = page.getByRole('button', { name: 'Submit' });
     }
 
     async clickCancelButton(){
@@ -27,4 +28,12 @@ export default class BaseClass{
     async clickBackButton(){
         await this.backButton.click();
     }
+    async clickSubmitButton(){
+        await this.submitButton.waitFor({state:'visible'});
+        if(await this.submitButton.isEnabled())
+        await this.submitButton.click(); 
+        else
+        throw new Error("Submit button is not enabled");
+    }
+    
 }
