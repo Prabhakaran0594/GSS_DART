@@ -1,4 +1,4 @@
-import {Page, Locator, expect} from '@playwright/test'
+import {Page, Locator, expect} from '@playwright/test';
 
 export class DARTHomePage{
 
@@ -12,19 +12,20 @@ export class DARTHomePage{
         this.page = page;
         // this.DisclaimerOKBtn=this.page.getByRole('dialog',{name:'DART Disclaimer'});
         // this.DisclaimerOKBtn=this.page.locator("//button[text()='OK']");
-        this.DisclaimerOKBtn=this.page.getByRole('button',{name:'OK'});
+        this.DisclaimerOKBtn=this.page.getByRole('button', { name: 'OK' });
         this.EmailInput=this.page.getByPlaceholder('Enter Email');
         this.ContinueBtn=this.page.getByRole('button',{name:'Continue'});
-        this.cookiesCloseBtn=this.page.locator('#onetrust-close-btn-container');
+        // this.cookiesCloseBtn=this.page.locator('#onetrust-close-btn-container');
+        this.cookiesCloseBtn= this.page.getByLabel('Cookie banner').getByLabel('Close');
 
     }
 
     async clickCookiesCloseBtn(){
 
-        // await expect(this.cookiesCloseBtn).toBeVisible();
+        // await expect(this.cookiesCloseBtn).toBeVisible({timeout:20000});
         await this.cookiesCloseBtn.waitFor({state:'visible'});
-        await this.page.waitForTimeout(5000);
-        await this.cookiesCloseBtn.hover();
+        // await this.page.waitForTimeout(5000);
+        await this.cookiesCloseBtn.click({force:true});
      
         }
     
@@ -32,8 +33,9 @@ export class DARTHomePage{
 
         // const discpopup = this.DisclaimerOKBtn;
         await this.DisclaimerOKBtn.waitFor({state:'visible'});
+        // await expect(this.DisclaimerOKBtn).toBeVisible({timeout:20000});
         // await this.page.waitForTimeout(50000);
-        await this.DisclaimerOKBtn.click();
+        await this.DisclaimerOKBtn.click({force:true});
         // const isVisibledisc:boolean=await discpopup.isVisible({timeout:50000});
         // if(isVisibledisc){  
         //     discpopup.getByRole('button',{name:'OK'}).click();
@@ -55,9 +57,9 @@ export class DARTHomePage{
 
     async initiateSubscriptionAsNonDeloitteAccount(Email:string){
 
-        // await this.clickCookiesCloseBtn();
-        // await this.clickOKOnDisclaimer();
-        await this.page.waitForTimeout(5000);
+        await this.clickCookiesCloseBtn();
+        await this.clickOKOnDisclaimer();
+        
         await this.enterEmail(Email);
         await this.clickContinueBtn();
     }

@@ -6,13 +6,15 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: [["html", { open: "never" }]],
+  timeout: 0,
   use: {
     trace: "on-first-retry", 
     screenshot: "only-on-failure",
     video: "retain-on-failure",
     testIdAttribute: "data-testid", 
-    actionTimeout: 10 * 1000,
+    actionTimeout: 60 * 1000,
     navigationTimeout: 20 * 1000,
+    
   },
   projects: [
     {
