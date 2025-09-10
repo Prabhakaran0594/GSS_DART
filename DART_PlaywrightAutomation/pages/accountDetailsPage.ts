@@ -1,6 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 import BaseClass from "./baseClass";
-
+import { accountDetailsPageLocators } from "../locators/accountDetailsPageLocators";
 export class DART_AccountDetails extends BaseClass {
 
   private readonly accountDetailsHeader: Locator;
@@ -19,25 +19,26 @@ export class DART_AccountDetails extends BaseClass {
   private readonly dunsNumber: Locator;
   private readonly department: Locator;
   private readonly address2: Locator;
-
+  private readonly stateDropdown: Locator;
   constructor(page: Page) {
     super(page);
-    this.accountDetailsHeader = page.locator("text=Account Details");
-    this.countryInput = page.locator("input#select-country");
-    this.firstNameInput = page.locator("input[name=firstName]");
-    this.lastNameInput = page.locator("input[name=lastName]");
-    this.position = page.locator("input[name=position]");
-    this.phoneNumber = page.locator("input[name=phone]");
-    this.companyInput = page.locator("input[name=companyFullName]");
-    this.globalParentFullName = page.locator("input[name=globalParentFullName]");
-    this.dunsNumber = page.locator("input[name=duns]");
-    this.department = page.locator("input[name=department]");
-    this.addressInput = page.locator("input[name=address]");
-    this.address2 = page.locator("input[name=address2]");
-    this.zipcodeInput = page.locator("input[name=zipCode]");
-    this.cityInput = page.locator("input[name=city]");
-    this.stateInput = page.locator("input[name=state]");
-    this.checkbox = page.locator("input[type=checkbox]").nth(0);
+    this.accountDetailsHeader = page.locator(accountDetailsPageLocators.pageTitle);
+    this.countryInput = page.locator(accountDetailsPageLocators.country);
+    this.firstNameInput = page.locator(accountDetailsPageLocators.firstName);
+    this.lastNameInput = page.locator(accountDetailsPageLocators.lastName);
+    this.position = page.locator(accountDetailsPageLocators.position);
+    this.phoneNumber = page.locator(accountDetailsPageLocators.phoneNumber);
+    this.companyInput = page.locator(accountDetailsPageLocators.company);
+    this.globalParentFullName = page.locator(accountDetailsPageLocators.globalParentFullName);
+    this.dunsNumber = page.locator(accountDetailsPageLocators.dunsNumber);
+    this.department = page.locator(accountDetailsPageLocators.department);
+    this.addressInput = page.locator(accountDetailsPageLocators.address);
+    this.address2 = page.locator(accountDetailsPageLocators.address2);
+    this.zipcodeInput = page.locator(accountDetailsPageLocators.zipcode);
+    this.cityInput = page.locator(accountDetailsPageLocators.city);
+    this.stateInput = page.locator(accountDetailsPageLocators.state);
+    this.stateDropdown = page.locator(accountDetailsPageLocators.stateDropdown.ul).locator(accountDetailsPageLocators.stateDropdown.li);
+    this.checkbox = page.locator(accountDetailsPageLocators.checkbox.type).nth(accountDetailsPageLocators.checkbox.nth);
   }
 
   async fillCountry(country: string) {
@@ -63,7 +64,11 @@ export class DART_AccountDetails extends BaseClass {
     await this.cityInput.fill(city);
   }
   async selectState(state: string) {
-    await this.stateInput.selectOption(state);
+    if(await this.stateInput.isEnabled()){
+      await this.stateInput.click();
+      await this.stateDropdown.getByText(state).click();
+    }
+    
   }
   async checkCheckbox() {
     await this.checkbox.check();

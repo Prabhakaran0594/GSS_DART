@@ -1,0 +1,20 @@
+export const accountDetailsPageLocators = {
+    pageTitle: 'Account Details',
+    country: 'input#select-country',
+    firstName: 'input[name="firstName"]',
+    lastName: 'input[name="lastName"]',
+    position: 'input[name="position"]',
+    phoneNumber: 'input[name="phone"]',
+    company: 'input[name="companyFullName"]',
+    globalParentFullName: 'input[name="globalParentFullName"]',
+    dunsNumber: 'input[name="duns"]',
+    department: 'input[name="department"]',
+    address: 'input[name="address"]',
+    address2: 'input[name="address2"]',
+    city: 'input[name="city"]',
+    state: 'input[name="state"]',
+    stateDropdown:{ul:'ul[role="listbox"]', li:'li[role="option"]'},
+    zipcode: 'input[name="zipCode"]',
+    checkbox: { type: 'input[type=checkbox]', nth: 0 },
+    
+};

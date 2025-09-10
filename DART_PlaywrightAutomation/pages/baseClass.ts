@@ -1,5 +1,5 @@
 import {Locator, Page} from "@playwright/test";
-
+import { baseClassLocators } from "../locators/baseClassLocators";
 export default class BaseClass{
    
     readonly page: Page;
@@ -9,10 +9,10 @@ export default class BaseClass{
     private readonly submitButton: Locator;
     constructor(page:Page){
         this.page = page;
-        this.cancelButton = page.getByRole('button', { name: 'Cancel' });
-        this.continueButton = page.getByRole('button', { name: 'Continue' });
-        this.backButton = page.getByRole('button', { name: 'Back' });
-        this.submitButton = page.getByRole('button', { name: 'Submit' });
+        this.cancelButton = page.locator(baseClassLocators.cancelButton);
+        this.continueButton = page.locator(baseClassLocators.continueButton);
+        this.backButton = page.locator(baseClassLocators.backButton);
+        this.submitButton = page.locator(baseClassLocators.submitButton);
     }
 
     async clickCancelButton(){

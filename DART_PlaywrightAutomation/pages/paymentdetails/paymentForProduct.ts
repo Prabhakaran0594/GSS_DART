@@ -1,7 +1,7 @@
 import { Locator, Page } from "@playwright/test";
 import BaseClass from "../baseClass";
 
-export default class PaymentForProductAccordion extends BaseClass {
+export  class PaymentForProductAccordion extends BaseClass {
 
    
     private readonly accordion3: Locator;
@@ -69,6 +69,13 @@ export default class PaymentForProductAccordion extends BaseClass {
         await this.expirationMonth.selectOption(expirationMonth);
         await this.expirationYear.selectOption(expirationYear);
         await this.cvc.fill(cvc);
+        await this.clickSubmitButton();
+    }
+
+    async fillAllInvoiceDetails(contact: string, email: string) {
+        await this.invoiceOption.isChecked();
+        await this.invoiceContact.fill(contact);
+        await this.invoiceContactEmail.fill(email);
         await this.clickSubmitButton();
     }
 }
