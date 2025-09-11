@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import { FrameLocator, Locator, Page } from "@playwright/test";
 import BaseClass from "../baseClass";
 
 export  class PaymentForProductAccordion extends BaseClass {
@@ -9,7 +9,8 @@ export  class PaymentForProductAccordion extends BaseClass {
      
     private readonly creditCardOption: Locator;
     private readonly invoiceOption: Locator;
-
+    //credit card
+    private readonly frame: FrameLocator;
     private readonly creditCardTypeHeader: Locator;
     private readonly creditCardNumber: Locator;
     private readonly nameOnCard: Locator;
@@ -24,19 +25,20 @@ export  class PaymentForProductAccordion extends BaseClass {
 
     constructor(page: Page) {
         super(page);
-       
-        this.accordion3 = page.locator('#3-header');
-        this.expandButton = page.locator(".MuiAccordionSummary-expandIconWrapper.css-1fx8m19").nth(2);
-        this.creditCardOption = page.getByLabel("Credit Card");
-        this.invoiceOption = page.getByLabel("Invoice (bill me later)");
 
-        this.creditCardTypeHeader = page.locator("#form-label-creditCardType");
-        this.creditCardNumber = page.locator("input[name=field_creditCardNumber]");
-        this.nameOnCard = page.locator("input[name=field_creditCardHolderName]");
-        this.expirationMonth = page.locator("#input-creditCardExpirationMonth");
-        this.expirationYear = page.locator("#input-creditCardExpirationYear");
-        this.cvc = page.locator("#input-cardSecurityCode");
-        this.creditCardCountry = page.locator("input-creditCardCountry");
+        this.accordion3 = page.locator('[id="3-header"]');
+        this.expandButton = page.locator(".MuiAccordionSummary-expandIconWrapper.css-1fx8m19").nth(2);
+        this.creditCardOption = page.getByRole("radio", { name: "Credit Card" });
+        this.invoiceOption = page.getByRole("radio", { name: "Invoice (bill me later)" });
+
+        this.frame = page.frameLocator('#z_hppm_iframe');
+        this.creditCardTypeHeader = this.frame.locator('[id="form-label-creditCardType"]');
+        this.creditCardNumber = this.frame.locator('input[name="field_creditCardNumber"]');
+        this.nameOnCard = this.frame.locator('input[name="field_creditCardHolderName"]');
+        this.expirationMonth = this.frame.locator('[id="input-creditCardExpirationMonth"]');
+        this.expirationYear = this.frame.locator('[id="input-creditCardExpirationYear"]');
+        this.cvc = this.frame.locator('[id="input-cardSecurityCode"]');
+        this.creditCardCountry = this.frame.locator('[id="input-creditCardCountry"]');
 
         this.invoiceContact = page.locator("input[name=contact]");
         this.invoiceContactEmail = page.locator("input[name=email]");
@@ -66,10 +68,10 @@ export  class PaymentForProductAccordion extends BaseClass {
         await this.creditCardTypeHeader.waitFor({ state: 'visible' });
         await this.creditCardNumber.fill(cardNumber);
         await this.nameOnCard.fill(nameOnCard);
-        await this.expirationMonth.selectOption(expirationMonth);
-        await this.expirationYear.selectOption(expirationYear);
+        await this.expirationMonth.selectOption({ value: expirationMonth });
+        await this.expirationYear.selectOption({ value: expirationYear });
         await this.cvc.fill(cvc);
-        await this.clickSubmitButton();
+        //await this.clickSubmitButton();
     }
 
     async fillAllInvoiceDetails(contact: string, email: string) {

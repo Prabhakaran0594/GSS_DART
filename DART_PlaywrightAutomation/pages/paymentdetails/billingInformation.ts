@@ -27,7 +27,7 @@ export class BillingInformationAccordion extends BaseClass {
     this.expandButton = page
       .locator(".MuiAccordionSummary-expandIconWrapper.css-1fx8m19")
       .nth(1);
-    this.accordion2 = page.locator("#2-header");
+    this.accordion2 = page.locator("[id='2-header']");
     this.billingContactEmail = page.locator("input[name=email]");
     this.billingContactCountry = page.locator("input#select-country");
     this.billingContactFirstName = page.locator("input[name=firstName]");
@@ -93,7 +93,5 @@ export class BillingInformationAccordion extends BaseClass {
   async clickClearButton() {
     await this.clearButton.click();
   }
-  async clickContinueButton() {
-    await this.clickContinueButton();
-  }
+
 }

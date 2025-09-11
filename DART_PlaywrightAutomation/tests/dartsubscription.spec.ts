@@ -27,8 +27,21 @@ test.beforeEach(async({page})=>{
 
 test.only('dart subscription flow', async({page})=>{
 
-    await page.waitForTimeout(5000);
+     await page.waitForTimeout(5000);
      await dartHomePage.clickCookiesCloseBtn();
      await dartHomePage.clickOKOnDisclaimer();
+     
+     await page.getByPlaceholder('Enter Email').fill('test123456@example.com');
+     await dartHomePage.clickContinueButton();
+     await page.waitForTimeout(20000);
+     await dartHomePage.clickContinueButton();
+
+     await termsOfUse.termsOfUse();
+     await accountDetails.accountDetails('United States','test','test','testCompany','1st address','74512','city','Alabama');
+     await billingInformationAccordion.clickContinueButton();
+     await paymentForProductAccordion.isAccordionExpanded();
+     await page.waitForTimeout(5000);
+     await paymentForProductAccordion.fillAllCreditCardNumberForUSPackage(process.env.CreditCardNumber!,process.env.NameOnCard!,process.env.ExpirationMonth!,process.env.ExpirationYear!,process.env.CVC!);
+     await page.waitForTimeout(5000);
 
 });

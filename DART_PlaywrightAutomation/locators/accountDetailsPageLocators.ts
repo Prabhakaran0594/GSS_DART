@@ -1,5 +1,5 @@
 export const accountDetailsPageLocators = {
-    pageTitle: 'Account Details',
+    pageTitle: '.MuiBox-root.css-1bqvafv',
     country: 'input#select-country',
     firstName: 'input[name="firstName"]',
     lastName: 'input[name="lastName"]',
@@ -12,7 +12,7 @@ export const accountDetailsPageLocators = {
     address: 'input[name="address"]',
     address2: 'input[name="address2"]',
     city: 'input[name="city"]',
-    state: 'input[name="state"]',
+    state: '#mui-component-select-state',
     stateDropdown:{ul:'ul[role="listbox"]', li:'li[role="option"]'},
     zipcode: 'input[name="zipCode"]',
     checkbox: { type: 'input[type=checkbox]', nth: 0 },

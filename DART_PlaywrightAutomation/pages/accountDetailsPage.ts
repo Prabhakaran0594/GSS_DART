@@ -72,6 +72,7 @@ export class DART_AccountDetails extends BaseClass {
   }
   async checkCheckbox() {
     await this.checkbox.check();
+    await this.checkbox.isChecked();
   }
 
   async accountDetails(

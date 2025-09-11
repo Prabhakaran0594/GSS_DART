@@ -8,7 +8,7 @@ export class AccountDetailsAccordion {
   private readonly expandButton: Locator;
   constructor(page: Page) {
     this.page = page;
-    this.accordion1 = page.locator('#1-header');
+    this.accordion1 = page.locator('[id="1-header"]');
     this.accordionHeader = page.locator("text=Account Details");
     this.expandButton = page.locator(".MuiAccordionSummary-expandIconWrapper.css-1fx8m19").nth(0);
   }

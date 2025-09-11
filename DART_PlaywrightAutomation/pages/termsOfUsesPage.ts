@@ -11,17 +11,19 @@ export class DART_TermsOfUse extends BaseClass{
 
     constructor(page:Page) {
         super(page);
-        this.termsOfUseHeader = page.getByText(termsOfUseLocators.termsOfUseHeader);
+        this.termsOfUseHeader = page.getByText(termsOfUseLocators.termsOfUseHeader).first();
         this.content = page.locator(termsOfUseLocators.content);
-        this.checkbox1 = page.getByTestId(termsOfUseLocators.checkbox1.testId).nth(termsOfUseLocators.checkbox1.nth);
-        this.checkbox2 = page.getByTestId(termsOfUseLocators.checkbox2.testId).nth(termsOfUseLocators.checkbox2.nth);
+        this.checkbox1 = page.getByLabel(termsOfUseLocators.checkbox1);
+        this.checkbox2 = page.getByLabel(termsOfUseLocators.checkbox2);
     }
 
     async clickCheckbox1() {
-        await this.checkbox1.click();
+        await this.checkbox1.check();
+        await this.checkbox1.isChecked();
     }
     async clickCheckbox2() {
-        await this.checkbox2.click();
+        await this.checkbox2.check();
+        await this.checkbox2.isChecked();
     }
 
     async termsOfUse(){
